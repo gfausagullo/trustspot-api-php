@@ -6,8 +6,6 @@ use Gonzaloner\TrustSpotApiClient\Resources\CompanyReviews;
 
 class TrustSpotApiClient
 {
-  const HTTP_STATUS_NO_CONTENT = 204;
-
   public $company_reviews;
   protected $auth_key;
   protected $secret_key;
@@ -67,19 +65,19 @@ class TrustSpotApiClient
     {
       $message = "Unable to communicate with TrustSpot (".curl_errno($this->ch)."): " . curl_error($this->ch) . ".";
 
-      $this->closeTcpConnection();
+      $this->closeConnection();
       throw new \Exception($message);
     }
 
     if (!function_exists("curl_reset"))
     {
-      $this->closeTcpConnection();
+      $this->closeConnection();
     }
 
     return $body;
   }
 
-  private function closeTcpConnection()
+  private function closeConnection()
   {
     if (is_resource($this->ch))
     {
@@ -90,11 +88,6 @@ class TrustSpotApiClient
 
   public function __destruct()
   {
-    $this->closeTcpConnection();
-  }
-
-  public function getLastHttpResponseStatusCode()
-  {
-    return $this->last_http_response_status_code;
+    $this->closeConnection();
   }
 }

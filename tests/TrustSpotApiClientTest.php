@@ -1,6 +1,6 @@
 <?php
 
-class TrustSpotApiClient extends PHPUnit_Framework_TestCase{
+class TrustSpotApiClientTest extends PHPUnit_Framework_TestCase{
 
 	public function testIsThereAnySyntaxError(){
 		$var = new Gonzaloner\TrustSpotApiClient\TrustSpotApiClient;
