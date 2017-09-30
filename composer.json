@@ -9,6 +9,7 @@
       "email": "gfausagullo@gmail.com"
     }
   ],
+  "minimum-stability": "dev",
   "type": "project",
   "require": {
     "php": ">=5.4"
