@@ -1,0 +1,24 @@
+{
+  "name": "gonzaloner/trustspot-api-php",
+  "description": "A very basic TrustSpot API client library for PHP.",
+  "keywords": ["trustspot", "api", "php"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gonzalo Faus Agulló",
+      "email": "gfausagullo@gmail.com"
+    }
+  ],
+  "type": "project",
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gonzaloner\\TrustSpotApiClient\\": "src/"
+    }
+  }
+}
