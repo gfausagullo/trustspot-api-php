@@ -23,9 +23,9 @@ class TrustSpotApiClient
     $this->auth_key = $auth_key;
   }
 
-  public function getCompanyReviews($limit = NULL, $offset = NULL, $sort = NULL)
+  public function company()
   {
-    return json_decode($this->company_reviews->get($limit, $offset, $sort));
+      return $this->company_reviews;
   }
 
   public function apiCall($url, $http_method, $http_body = NULL)
@@ -65,19 +65,19 @@ class TrustSpotApiClient
     {
       $message = "Unable to communicate with TrustSpot (".curl_errno($this->ch)."): " . curl_error($this->ch) . ".";
 
-      $this->closeConnection();
+      $this->closeApiConnection();
       throw new \Exception($message);
     }
 
     if (!function_exists("curl_reset"))
     {
-      $this->closeConnection();
+      $this->closeApiConnection();
     }
 
     return $body;
   }
 
-  private function closeConnection()
+  private function closeApiConnection()
   {
     if (is_resource($this->ch))
     {
@@ -88,6 +88,6 @@ class TrustSpotApiClient
 
   public function __destruct()
   {
-    $this->closeConnection();
+    $this->closeApiConnection();
   }
 }
