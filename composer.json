@@ -1,6 +1,6 @@
 {
   "name": "gonzaloner/trustspot-api-php",
-  "description": "A very basic TrustSpot API client library for PHP.",
+  "description": "A very basic TrustSpot API client library for PHP",
   "keywords": ["trustspot", "api", "php"],
   "license": "MIT",
   "authors": [

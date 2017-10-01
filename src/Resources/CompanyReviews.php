@@ -6,6 +6,7 @@ use Gonzaloner\TrustSpotApiClient\TrustSpotApiClient;
 
 class CompanyReviews
 {
+
   const GET_ENDPOINT = 'https://trustspot.io/api/pub/get_company_reviews';
   const GET_METHOD = 'POST';
   const DEFAULT_LIMIT = 10;

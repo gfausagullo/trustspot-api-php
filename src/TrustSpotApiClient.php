@@ -6,6 +6,7 @@ use Gonzaloner\TrustSpotApiClient\Resources\CompanyReviews;
 
 class TrustSpotApiClient
 {
+
   public $company_reviews;
   protected $auth_key;
   protected $secret_key;
@@ -25,14 +26,14 @@ class TrustSpotApiClient
 
   public function company()
   {
-      return $this->company_reviews;
+    return $this->company_reviews;
   }
 
   public function apiCall($url, $http_method, $http_body = NULL)
   {
     if (empty($this->auth_key))
     {
-      throw new \Exception("You have not set an AUTH key. Use setAuthKey() to set the AUTH key.");
+      throw new \Exception("[TrustSpot API Client]: You have not set an auth key.");
     } else {
       $post_key = ['key' => $this->auth_key];
     }
@@ -54,7 +55,7 @@ class TrustSpotApiClient
     curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $http_method);
     curl_setopt($this->ch, CURLOPT_POST, 1);
-    curl_setopt($this->ch, CURLOPT_POSTFIELDS, $post_params);
+    curl_setopt($this->ch, CURLOPT_POSTFIELDS, !$http_body ? $post_key : $post_params);
     curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
 
     $body = curl_exec($this->ch);
@@ -63,7 +64,7 @@ class TrustSpotApiClient
 
     if (curl_errno($this->ch))
     {
-      $message = "Unable to communicate with TrustSpot (".curl_errno($this->ch)."): " . curl_error($this->ch) . ".";
+      $message = "[TrustSpot API Client]: Unable to communicate with TrustSpot.";
 
       $this->closeApiConnection();
       throw new \Exception($message);
